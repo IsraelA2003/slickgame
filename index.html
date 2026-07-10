@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraForge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loading">Generating world...</div>
+  <canvas id="game"></canvas>
+  <div id="hud">
+    <div class="brand">TERRAFORGE</div>
+    <div id="stats"></div>
+    <div id="hotbar"></div>
+    <div class="help">A/D move · Space jump · Left click mine/attack · Right click place · 1–8 select · C craft · R restart</div>
+  </div>
+  <div id="crafting" class="panel hidden">
+    <h2>Crafting</h2>
+    <div id="recipes"></div>
+    <p>Press C to close</p>
+  </div>
+  <div id="message"></div>
+  <script src="game.js"></script>
+</body>
+</html>
