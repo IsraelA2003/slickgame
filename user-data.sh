@@ -3,7 +3,7 @@ set -euxo pipefail
 
 # Change only this value if your GitHub repository has a different name.
 GITHUB_USER="IsraelA2003"
-REPO_NAME="terraria-game"
+REPO_NAME="slickgame"
 BRANCH="main"
 APP_DIR="/opt/terraforge"
 WEB_DIR="/usr/share/nginx/html"
