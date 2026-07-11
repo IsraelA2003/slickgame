@@ -3,24 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TerraForge</title>
+  <title>Dicebound: Skeleton Crypt</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="loading">Generating world...</div>
-  <canvas id="game"></canvas>
-  <div id="hud">
-    <div class="brand">TERRAFORGE</div>
-    <div id="stats"></div>
-    <div id="hotbar"></div>
-    <div class="help">A/D move · Space jump · Left click mine/attack · Right click place · 1–8 select · C craft · R restart</div>
-  </div>
-  <div id="crafting" class="panel hidden">
-    <h2>Crafting</h2>
-    <div id="recipes"></div>
-    <p>Press C to close</p>
-  </div>
-  <div id="message"></div>
+  <main id="game-shell">
+    <header class="topbar">
+      <div><h1>Dicebound</h1><p>Skeleton Crypt</p></div>
+      <div class="controls-note">
+        <span>Explore: Hold WASD / Arrows</span>
+        <span>Combat move: Tap WASD / Arrows</span>
+        <span>Select: Click</span>
+        <span>Attack: Space</span>
+        <span>Dodge: Shift</span>
+      </div>
+    </header>
+    <section class="hud">
+      <div class="stat"><span>HP</span><div class="bar"><div id="hp-fill"></div></div><strong id="hp-text">100 / 100</strong></div>
+      <div class="compact-stat"><span>Floor</span><strong id="room-text">1</strong></div>
+      <div class="compact-stat"><span>Gold</span><strong id="gold-text">0</strong></div>
+      <div class="compact-stat"><span>Crit Chance</span><strong id="crit-text">10%</strong></div>
+      <div class="compact-stat"><span>Crit Damage</span><strong id="crit-damage-text">2.0×</strong></div>
+    </section>
+    <section class="game-layout">
+      <div class="canvas-wrap">
+        <canvas id="game" width="960" height="540"></canvas>
+        <div id="pickup-toast" class="pickup-toast"></div>
+        <div id="start-screen" class="overlay visible"><div class="panel"><h2>Enter the Skeleton Crypt</h2><p>Explore freely. Entering a skeleton's detection range starts turn-based combat. Archers telegraph their shots, so use cover, interrupt them, or dodge.</p><button id="start-btn">Start Run</button></div></div>
+        <div id="upgrade-screen" class="overlay"><div class="panel wide"><h2>Choose an Upgrade</h2><p>Defeat every encounter on the floor to descend.</p><div id="upgrade-options" class="upgrade-grid"></div></div></div>
+        <div id="shop-screen" class="overlay"><div class="panel wide shop-panel"><h2>Crypt Merchant</h2><p>Spend the gold you found. The shop appears after every 5 floors.</p><div id="shop-gold" class="shop-gold">Gold: 0</div><div id="shop-options" class="upgrade-grid"></div><button id="leave-shop-btn" class="secondary-btn">Continue to Next Floor</button></div></div>
+        <div id="game-over-screen" class="overlay"><div class="panel"><h2>Run Ended</h2><p id="game-over-stats"></p><button id="restart-btn">Try Again</button></div></div>
+      </div>
+      <aside class="side-panel">
+        <div class="dice-card">
+          <h2>Attack Roll</h2>
+          <div id="turn-label" class="roll-result"><strong>Exploration</strong></div>
+          <div class="dice-row"><div id="die-one" class="die">1</div><div id="die-two" class="die">1</div></div>
+          <div id="roll-result" class="roll-result">Explore until a skeleton detects you.</div>
+          <button id="roll-btn">Roll Attack</button>
+          <button id="dodge-btn" class="secondary-btn">Dodge — 2/2</button>
+        </div>
+        <div class="info-card"><h3>Combat Rules</h3><p><strong>Aiming:</strong> archers show a red line for one turn before firing.</p><p><strong>Interrupt:</strong> damage an aiming archer to cancel its shot.</p><p><strong>Cover:</strong> pillars and statues block arrows and sight.</p><p><strong>Dodge:</strong> Shift moves two steps and avoids the next enemy phase.</p><p><strong>Loot:</strong> explore the larger floor to find gold piles, healing potions, and treasure chests.</p></div>
+        <div class="info-card"><h3>Run Stats</h3><p>Damage Bonus: <strong id="damage-bonus-text">+0</strong></p><p>Combat Move: <strong id="speed-text">55</strong></p><p>Attack Range: <strong id="range-text">130</strong></p><p>Dodge: <strong id="dash-text">2 / 2</strong></p><p>Area Explored: <strong id="explored-text">0%</strong></p></div>
+      </aside>
+    </section>
+  </main>
   <script src="game.js"></script>
 </body>
 </html>
